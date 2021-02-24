@@ -1,4 +1,4 @@
-package com.example.cleanarchitecturedemo;
+package com.example.cleanarchitecturedemo.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import com.example.cleanarchitecturedemo.R;
+
+public class AndroidView extends AppCompatActivity implements View.OnClickListener {
 
     Button enterButton;
     TextView outputView;
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         outputView = findViewById(R.id.outputView);
         inputText = findViewById(R.id.inputText);
 
-        enterButton.setOnClickListener(MainActivity.this);
+        enterButton.setOnClickListener(AndroidView.this);
     }
 
     @Override
