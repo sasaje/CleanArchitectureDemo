@@ -40,7 +40,21 @@ public class AndroidView extends AppCompatActivity implements View.OnClickListen
         inputText = (EditText)findViewById(R.id.inputText);
 
         String inputString = inputText.getEditableText().toString();
+
         model.setData(inputString);
         outputView.setText(model.getData());
+        Log.d("CONSOLE", "Adding ModelObserver from Model.");
+
+        // Inner class call
+        model.addModelObserver(new MyModelObserver());
+    }
+
+    // Inner class for handling updates from Model
+    private class MyModelObserver implements Model.ModelObserver{
+        @Override
+        public void update() {
+            Log.d("CONSOLE", "Update received. Replacing data.");
+            outputView.setText(model.getData());
+        }
     }
 }
