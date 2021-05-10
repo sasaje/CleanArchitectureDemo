@@ -32,6 +32,9 @@ public class AndroidView extends AppCompatActivity implements View.OnClickListen
 
         enterButton = findViewById(R.id.enterButton);
         enterButton.setOnClickListener(AndroidView.this);
+
+        // Inner class call
+        model.addModelObserver(new MyModelObserver());
     }
 
     @Override
@@ -39,14 +42,8 @@ public class AndroidView extends AppCompatActivity implements View.OnClickListen
         outputView = (TextView)findViewById(R.id.outputView);
         inputText = (EditText)findViewById(R.id.inputText);
 
-        String inputString = inputText.getEditableText().toString();
-
-        model.setData(inputString);
-        outputView.setText(model.getData());
+        model.setData(inputText.getText().toString());
         Log.d("CONSOLE", "Adding ModelObserver from Model.");
-
-        // Inner class call
-        model.addModelObserver(new MyModelObserver());
     }
 
     // Inner class for handling updates from Model
@@ -54,7 +51,14 @@ public class AndroidView extends AppCompatActivity implements View.OnClickListen
         @Override
         public void update() {
             Log.d("CONSOLE", "Update received. Replacing data.");
-            outputView.setText(model.getData());
+            outputView.setText(wrapModelClassToLowerCase(model.getData()));
         }
+    }
+
+    public String wrapModelClassToLowerCase(String inputString){
+        inputString = inputText.getEditableText().toString();
+        String inputStringLowerCase = inputString.toLowerCase();
+        Log.d("CONSOLE" , "inputStringLowerCase: " + inputStringLowerCase);
+        return inputStringLowerCase;
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Model {
 
     private ArrayList<ModelObserver> observers = new ArrayList<ModelObserver>();
-    private String data = "Data";
+    private String data = "";
 
     public String getData() {
         return data;
